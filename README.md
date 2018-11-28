@@ -1,5 +1,6 @@
 # C-Project
 Card Game
+remark: test.cpp can be used as guide to develop test cases for all classes
 1. shuffle function should be CHECKED
 
 2. test_driver needs to be done
