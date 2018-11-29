@@ -56,8 +56,14 @@ void Player::setDisplayMode(bool end){
 
 //TO BE CHECKED
 ostream& operator<<(ostream& os, const Player& player){
-    os<<player._name <<": " << player.position<<" ("<<player.sleep<<")"<<"\n"
-    <<"Once endOfGame is true: "<<"\n"<<player._name<<": "<<player.ruby<<" rubies";
+    
+    if(player.endOfGame){
+        os<<player._name<<": "<<player.ruby<<" rubies";
+    }
+    else{
+        os<<player._name <<": " << player.position<<" ("<<player.sleep<<")"<<"\n";
+    }
+    
     return os;
 }
 
