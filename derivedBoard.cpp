@@ -58,9 +58,17 @@ void DerivedBoard::updatePosition(const Letter& l1,const Number& n1,const Letter
     string p_op = letter.find(l1)->second + number.find(n1)->second;
     string p_ex = letter.find(l2)->second + number.find(n2)->second;
     for(int i=0;i<position.size();++i){
-        if(position[i] == p_ex && !isFaceUp(l2,n2)){
+        if(position[i] == p_op && !isFaceUp(l2,n2)){
             position.erase(position.begin()+i);
+            position.push_back(p_op);
+        }
+        else if(position[i] == p_op && isFaceUp(l2,n2)){
+            position[i] = p_ex;
+        }
+        if(position[i] == p_ex){
+            position[i] = p_op;
+            return;
         }
     }
-    position.push_back(p_op);
+    
 }
