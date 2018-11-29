@@ -82,7 +82,8 @@ const Player& Rules::getNextPlayer(const Game& game){
 // may be a for loop herer?
 
 //till find next active player
-    if(_count == players.size()){
+cout<<_count<<endl;
+    if(_count >= players.size()){
         _count = 0;
     }
     const Player& player = game.getPlayer(players[_count].getSide());
@@ -141,6 +142,9 @@ void Rules::octopus(){
 void Rules::turtle(int& ind){
     cout<<"Special ability of turtle is activated if round is not over"<<endl;
     ind++;
+    if(ind == players.size()){
+        ind = 0;
+    }
     _count++;
 }
 
