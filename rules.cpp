@@ -4,7 +4,7 @@
 #include "rules.h"
 #include "game.h"
 #include "player.h"
-#include "card.h"
+//#include "card.h"
 
 
 #include <iostream>
@@ -20,7 +20,7 @@ using std::cin;
 using std::string;
 
 class Player;
-bool restart = false;
+
 Rules::Rules(vector<Player>& vec):players(vec){
     for(int i=0;i<vec.size();++i){
         activeP.push_back(true);
@@ -82,7 +82,6 @@ const Player& Rules::getNextPlayer(const Game& game){
 // may be a for loop herer?
 
 //till find next active player
-cout<<_count<<endl;
     if(_count >= players.size()){
         _count = 0;
     }
@@ -93,37 +92,7 @@ cout<<_count<<endl;
     
 }
 
-string Rules::triggerAbility(const Game& game,int& ind){
-    Card::FaceAnimal fa = (*game.getCurrentCard())(true);
-    switch(fa){
-        case  Card::CRAB: {
-            crab();
-            return "CRAB";
-            break;
-            }
-        case  Card::PENGUIN: {
-            penguin();
-            return "PENGUIN";
-            break;}
 
-        case  Card::OCTOPUS: {
-            octopus();
-            return "OCTOPUS";
-            break;
-            }
-        case  Card::TURTLE: {
-            turtle(ind);
-            return "TURTLE";
-            break;
-            }
-        case  Card::WALRUS: {
-            walrus();
-            return "WALRUS";
-            break;
-            }
-    }
-
-}
 
 void Rules::crab(){
     cout<<"Special ability of crab is activated if round is not over"<<endl;
@@ -152,4 +121,5 @@ void Rules::walrus(){
     cout<<"Special ability of walrus is activated if round is not over"<<endl;
     
 }
+
 

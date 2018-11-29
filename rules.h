@@ -13,16 +13,21 @@ using std::vector;
 class Game;
 class Player;
 class Rules{
-    vector<Player> players;
-    vector<bool> activeP;
-   // vector<Player::Side> s;
-    int _count = 0;
-    Player::Side helper();
-    void crab();
-    void penguin();
-    void octopus();
-    void turtle(int&);
-    void walrus();
+
+    bool restart = false;
+
+    
+    protected:
+        vector<Player> players;
+        vector<bool> activeP;
+    // vector<Player::Side> s;
+        int _count = 0;
+        Player::Side helper();
+        void crab();
+        void penguin();
+        void octopus();
+        void turtle(int&);
+        void walrus();
 
     
     public:
@@ -33,7 +38,7 @@ class Rules{
         const Player& getNextPlayer(const Game&);
 
 //used in expert mode
-        string triggerAbility(const Game&,int& ind);
+        //string triggerAbility(const Game&,int& ind);
 
 };
 
