@@ -64,7 +64,7 @@ Player& Game::getPlayer(Player::Side side) const{
             return players[i];
         }
     }
-
+    return players[0];
 }
 
 const Card* Game::getPreviousCard() const{
