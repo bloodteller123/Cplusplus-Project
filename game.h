@@ -21,24 +21,18 @@ class Board;
 
 //Board::Number;
 class Game{
-        
-    protected:
         int _round;
+        const Card* currentCard = nullptr;
+        const Card* previousCard = nullptr;
+    protected:
+        
         friend ostream& operator<<(ostream& os, const Game& game);
         mutable vector<Player> players; // why can only set to mutable?
         string mode;
-    // vector<std::reference_wrapper<const Card*>> CardStorage; // used to store previous/current card
-        const Card* currentCard = nullptr;
-        const Card* previousCard = nullptr;
-        //Board board;
-        Board& board;
-        vector<string> neighbours;
 
-         
+        Board& board;
     public:
         
-    
-    
         typedef Board::Letter Letter;//////////////////
         typedef Board::Number Number;
         Game(Board&,string);
