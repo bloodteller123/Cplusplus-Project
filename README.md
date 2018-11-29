@@ -1,5 +1,6 @@
 # C-Project
 Card Game
+remark: test.cpp can be used as guide to develop test cases for all classes
 1. shuffle function should be CHECKED
 
 2. test_driver needs to be done
@@ -14,3 +15,5 @@ Card Game
 7. container for const player& may need to be checeked
 
 8.animal abilitty in expert mode to be done (done)
+9. The expert mode game should be some derived class from game class tho
+make it modular
