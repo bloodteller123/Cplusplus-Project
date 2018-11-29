@@ -142,7 +142,7 @@ void Rules::octopus(){
 void Rules::turtle(int& ind){
     cout<<"Special ability of turtle is activated if round is not over"<<endl;
     ind++;
-    if(ind == players.size()){
+    if(ind >= players.size()){
         ind = 0;
     }
     _count++;
