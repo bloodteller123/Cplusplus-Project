@@ -21,7 +21,7 @@ class Board;
 
 //Board::Number;
 class Game{
-    
+        
     protected:
         int _round;
         friend ostream& operator<<(ostream& os, const Game& game);
@@ -33,6 +33,8 @@ class Game{
         //Board board;
         Board& board;
         vector<string> neighbours;
+
+         
     public:
         
     
@@ -52,12 +54,10 @@ class Game{
         void setCard(const Letter&,const Number&, Card*);
 
 // used in expert mode
-        vector<string>& getNeighbour(const Letter&,const Number&);
-        void setBlock(bool,const Letter&,const Number&);
-        int getNFUCard();
-        void updatePosition(const Letter&,const Number&,const Letter&,const Number&);
-        //void turnFaceDown(const Letter&,const Number&);
-        //bool isFaceUp(const Letter&, const Number&) const;
+       // vector<string>& getNeighbour(const Letter&,const Number&);
+       // void setBlock(bool,const Letter&,const Number&);
+       // int getNFUCard();
+       // void updatePosition(const Letter&,const Number&,const Letter&,const Number&);
 
 
 

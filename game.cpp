@@ -31,7 +31,7 @@ Game::Game(Board& b,string s):mode(s),board(b){
     if(mode == "e"||(mode == "E")){
         std::cout<<"EXPERT MODE ON"<<std::endl;
     }
-    board.setMode(mode);
+   // board.setMode(mode);
     
     /*
         TO BE COMPLETED
@@ -137,7 +137,7 @@ ostream& operator<<(ostream& os, const Game& game){
     return os;
 
 }
-
+/*
 
 vector<string>& Game::getNeighbour(const Letter& l,const Number& n){
     return board.getNeighbour(l,n);
@@ -154,3 +154,4 @@ int Game::getNFUCard(){
 void Game::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,const Number& n2){
     board.updatePosition( l1,  n1,  l2,  n2);
 }
+*/
