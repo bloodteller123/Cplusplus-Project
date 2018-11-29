@@ -182,7 +182,7 @@ int main(){
         string blockCard = "";
         
         cout<<"Now Startig Game: "<<endl;
-        cout<<board<<endl;
+        cout<<game<<endl;
         while(!rules.roundOver(game)){
             bool crab=false;
             if(ind == Tplayers.size()){ind = 0;}
@@ -318,7 +318,7 @@ int main(){
             }
            // cout<<"ind: "<<ind<<"-------------"<<endl;
            //if(!crab ||rules.roundOver(game)){
-            cout<<board<<endl;
+            cout<<game<<endl;
             sleep_for(nanoseconds(10));
             sleep_until(system_clock::now() + seconds(1));
            //}
@@ -333,8 +333,13 @@ int main(){
 
     
     }
-    cout<<game<<endl;
+   // cout<<game<<endl;
     cout<<"End Of Game------------------------>"<<endl;
+    for(int i=0;i<Tplayers.size();++i){
+          game.getPlayer(Tplayers[i].getSide()).setDisplayMode(true);
+    }
+    cout<<game<<endl;
+
     map<int,string> totalList;
     vector<int> finalReward;
     for(int i=0;i<Tplayers.size();++i){
@@ -342,6 +347,8 @@ int main(){
             (game.getPlayer(Tplayers[i].getSide()).getNRubies(),
             game.getPlayer(Tplayers[i].getSide()).getName()));
         finalReward.push_back(game.getPlayer(Tplayers[i].getSide()).getNRubies());
+
+      
     }
     
     std::sort(finalReward.begin(),finalReward.end(),sortReward);
