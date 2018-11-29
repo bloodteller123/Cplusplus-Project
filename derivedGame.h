@@ -9,6 +9,7 @@
 using std::string;
 
 
+class DerivedBoard;
 
 class DerivedGame : public Game{
 
