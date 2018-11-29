@@ -36,7 +36,7 @@ class Board{
             Number5=4
         };
 
-    private:
+    protected:
         friend ostream& operator<<(ostream& os, const Board& board);
         CardDeck &cd = CardDeck::make_CardDeck();
         vector<Card*> v_card;
@@ -53,6 +53,10 @@ class Board{
         string b_array[19];
         string e_array[3];
 
+        int size;
+        int rows;
+        int _size;
+
         void updateBaseBoard(string (&)[19],const Letter&, const Number&);
         void initializeBaseBoard(string (&)[19]);
         void initializeExpertBoard(string (&)[3]);
@@ -62,8 +66,8 @@ class Board{
         void buildNumber(std::map<Board::Number,string> &n);
         
 
-        string mode;
-        vector<string> neighbours;
+        string _mode;
+        vector<string> _neighbours;
         vector<bool> isBlock;
         bool block = false;
         vector<Card*> expertHelpCard;
@@ -77,11 +81,11 @@ class Board{
         void reset();
 
     // used in expert mode
-        void setMode(string);
-        vector<string>& getNeighbour(const Letter&,const Number&);
-        void setBlock(bool,const Letter&,const Number&);
-        int getNFUCard();
-        void updatePosition(const Letter&  ,const Number&  ,const Letter&  ,const Number&  );
+        //void setMode(string);
+        //vector<string>& getNeighbour(const Letter&,const Number&);
+        //void setBlock(bool,const Letter&,const Number&);
+       // int getNFUCard();
+       // void updatePosition(const Letter&  ,const Number&  ,const Letter&  ,const Number&  );
 
 };
 

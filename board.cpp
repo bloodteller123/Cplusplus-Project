@@ -21,9 +21,7 @@ using std::vector;
 using std::ostream;
 using std::map;
 
-int size;
-int rows;
-int _size;
+
 
  
 class NoMoreCards : public std::exception {
@@ -93,13 +91,13 @@ bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff t
     help[l*_size + n] = face;
     faceup[l*_size + n] = false;
 
-     if(mode == "E" || mode == "e"){
+     if(_mode == "E" || _mode == "e"){
         if(face){
             updateExpertBoard(e_array,l,n);
             return true;
         }
     }
-    else if(mode == "B" || mode == "b"){
+    else if(_mode == "B" || _mode == "b"){
         if(face){
                 updateBaseBoard(b_array,l,n);
                 return true;
@@ -115,14 +113,14 @@ bool Board::turnFaceUp(const Letter& l, const Number& n){ // turnFACEup iff this
     help[l*_size + n] = face;
     faceup.at(l*_size + n) = true;
  
-    if(mode == "E" || mode == "e"){
+    if(_mode == "E" || _mode == "e"){
         if(!face){
             updateExpertBoard(e_array,l,n);
             return true;
         }
     }
 
-    else if(mode == "B" || mode == "b"){
+    else if(_mode == "B" || _mode == "b"){
         if(!face){
  
         updateBaseBoard(b_array,l,n);
@@ -174,10 +172,10 @@ void Board::reset(){
     help[12] = true;
     position.clear();
     expertHelpCard.clear();
-    if(mode == "B" || mode == "b"){
+    if(_mode == "B" || _mode == "b"){
         initializeBaseBoard(b_array);
     }
-    else if(mode == "E" || mode == "e"){
+    else if(_mode == "E" || _mode == "e"){
         initializeExpertBoard(e_array);
     }
 
@@ -188,7 +186,7 @@ ostream& operator<<(ostream& os, const Board& board){
     string b_letter[19]=  {" ","A"," "," "," ","B"," "," "," ","C"," "," "," ","D"," "," "," ","E"," "};
     string b_number[19] = {" ","1"," "," "," ","2"," "," "," ","3"," "," "," ","4"," "," "," ","5"," "};
     
-    if(board.mode == "B" || board.mode =="b"){ // its under base mode
+    if(board._mode == "B" || board._mode =="b"){ // its under base mode
           
 
         for(int i=0;i<19;++i){
@@ -201,7 +199,7 @@ ostream& operator<<(ostream& os, const Board& board){
             os<<b_number[i];
         } 
     }
-    else if(board.mode == "E" || board.mode == "e"){
+    else if(board._mode == "E" || board._mode == "e"){
   
         for(int i=0;i<3;++i){
             os<<board.e_array[i]<<"\n";
@@ -216,13 +214,13 @@ ostream& operator<<(ostream& os, const Board& board){
 
     return os;
 }
-
+/*
 
 void Board::setMode(string s){
     mode = s;
 }
 
-
+*/
 
 void Board::updateBaseBoard(string (&b_array)[19],const Letter& l, const Number& n){
     int helper=0;
@@ -405,7 +403,7 @@ void Board::updateExpertBoard(string (&e_array)[3],const Letter& l, const Number
 }
 
 
-
+/**
 vector<string>& Board::getNeighbour(const Letter& l,const Number& n){
     string s;
     neighbours.clear();
@@ -457,10 +455,8 @@ void Board::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,co
         }
     }
     position.push_back(p_op);
-
-
 }
-
+**/
 void Board::buildLetter(std::map<Board::Letter,string> &l){
     l.insert(std::pair<Board::Letter,string>(Board::Letter::A,"A"));
     l.insert(std::pair<Board::Letter,string>(Board::Letter::B,"B"));
