@@ -56,6 +56,7 @@ class Board{
         int size;
         int rows;
         int _size;
+        bool preFace = true;
 
         void updateBaseBoard(string (&)[19],const Letter&, const Number&);
         void initializeBaseBoard(string (&)[19]);

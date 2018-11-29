@@ -93,6 +93,10 @@ bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff t
 
      if(_mode == "E" || _mode == "e"){
         if(face){
+            std::cout<<isFaceUp(l,n)<<"!!!!!"<<std::endl;
+            std::cout<<faceup[l*_size+n]<<std::endl;
+            std::cout<<l*_size+n<<std::endl;
+            std::cout<<"Turning face down"<<std::endl;
             updateExpertBoard(e_array,l,n);
             return true;
         }
@@ -143,17 +147,14 @@ Card* Board::getCard(const Letter& l, const Number& n){
 
 
 void Board::setCard(const Letter& l, const Number& n,Card* c){
-    int ind;
-    for(int i=0;i<v_card.size();++i){ // iterate through the cards find this c
-        if(c == v_card[i]){             
-            ind = i;
-        }
-    }
-    if(!faceup[ind]){           // if this card is FD, update faceup[at new position]
+
+    if(!preFace){           // if this card is FD, update faceup[at new position]
+        preFace = isFaceUp(l,n);
         faceup[l*_size+n] = false;
         std::cout<<"This card is face down"<<std::endl;
     }
     else{                       // otherwise it's FU,update faceup
+        preFace = isFaceUp(l,n);
         faceup[l*_size+n] = true;
         std::cout<<"This card is face up"<<std::endl;
     }
