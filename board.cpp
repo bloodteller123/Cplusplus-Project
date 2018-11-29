@@ -91,7 +91,7 @@ bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff t
     help[l*_size + n] = face;
     faceup[l*_size + n] = false;
 
-     if(_mode == "E" || _mode == "e"){
+     if(_mode == "2"){
         if(face){
             std::cout<<isFaceUp(l,n)<<"!!!!!"<<std::endl;
             std::cout<<faceup[l*_size+n]<<std::endl;
@@ -101,7 +101,7 @@ bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff t
             return true;
         }
     }
-    else if(_mode == "B" || _mode == "b"){
+    else if(_mode == "1"){
         if(face){
                 updateBaseBoard(b_array,l,n);
                 return true;
@@ -117,14 +117,14 @@ bool Board::turnFaceUp(const Letter& l, const Number& n){ // turnFACEup iff this
     help[l*_size + n] = face;
     faceup.at(l*_size + n) = true;
  
-    if(_mode == "E" || _mode == "e"){
+    if(_mode ==  "2"){
         if(!face){
             updateExpertBoard(e_array,l,n);
             return true;
         }
     }
 
-    else if(_mode == "B" || _mode == "b"){
+    else if(_mode == "1"){
         if(!face){
  
         updateBaseBoard(b_array,l,n);
@@ -173,10 +173,10 @@ void Board::reset(){
     help[12] = true;
     position.clear();
     expertHelpCard.clear();
-    if(_mode == "B" || _mode == "b"){
+    if(_mode == "1"){
         initializeBaseBoard(b_array);
     }
-    else if(_mode == "E" || _mode == "e"){
+    else if(_mode == "2"){
         initializeExpertBoard(e_array);
     }
 
@@ -187,7 +187,7 @@ ostream& operator<<(ostream& os, const Board& board){
     string b_letter[19]=  {" ","A"," "," "," ","B"," "," "," ","C"," "," "," ","D"," "," "," ","E"," "};
     string b_number[19] = {" ","1"," "," "," ","2"," "," "," ","3"," "," "," ","4"," "," "," ","5"," "};
     
-    if(board._mode == "B" || board._mode =="b"){ // its under base mode
+    if(board._mode == "1"){ // its under base mode
           
 
         for(int i=0;i<19;++i){
@@ -200,7 +200,7 @@ ostream& operator<<(ostream& os, const Board& board){
             os<<b_number[i];
         } 
     }
-    else if(board._mode == "E" || board._mode == "e"){
+    else if(board._mode == "2"){
   
         for(int i=0;i<3;++i){
             os<<board.e_array[i]<<"\n";

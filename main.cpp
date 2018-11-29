@@ -57,14 +57,14 @@ int main(){
    vector<Reward*> reward;
    string mode;
    //char mode = {0};
-   cout<<"Would you like to play base mode or expert mode ? Please enter (B/b) or (E/e) to play "<<endl;
+   cout<<"Would you like to play base mode or expert mode / expert rules mode? Please enter 1 or 2 or 3 to play "<<endl;
    while(true){
        getline(cin,input);
-       if(input=="B" || input == "b" || input == "E" || input == "e"){
+       if(input=="1" || input == "2" || input == "3"){
            mode = input;
            break;
        }
-       cout<< "Invalid input, please Enter (B/b) or (E/e)"<<endl;
+       cout<< "Invalid input, please Enter 1 or 2 or 3"<<endl;
    }
    cout<<"Your choice is: "<<mode<<endl;
    while(true){
@@ -226,7 +226,7 @@ int main(){
             /*
             In expert mode, animal spacial ability is triggered iff player[ind] is actived
             */
-            if((mode == "E" || mode == "e") && game.getPlayer(Tplayers[ind].getSide()).isActive()) {
+            if((mode == "2") && game.getPlayer(Tplayers[ind].getSide()).isActive()) {
                 if(blockCard != "")
                     game.setBlock(false,letter.find(blockCard[0])->second,number.find(blockCard[1])->second);//unblock the card
                 string animal = rules.triggerAbility(game,ind);
