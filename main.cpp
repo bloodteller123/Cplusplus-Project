@@ -185,13 +185,15 @@ int main(){
         while(!rules.roundOver(game)){
             bool crab=false;
             if(ind == Tplayers.size()){ind = 0;}
+            cout<<"11111111111111"<<endl;
             /*
             # next active player takes a turn
             */
            while(!rules.getNextPlayer(game).isActive()){
                ind++;
-               if(ind == Tplayers.size()){ind = 0;}
+               if(ind >= Tplayers.size()){ind = 0;}
            }
+           cout<<"2222222222222222222"<<endl;
             cout<<"---------------------------------------------------------------------"<<endl;
             cout<<"---------------------------------------------------------------------"<<endl;
 
