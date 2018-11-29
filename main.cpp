@@ -57,7 +57,10 @@ int main(){
    vector<Reward*> reward;
    string mode;
    //char mode = {0};
-   cout<<"Would you like to play base mode or expert mode / expert rules mode? Please enter 1 or 2 or 3 to play "<<endl;
+    cout<<"Would you like to play base mode: (1)"<<endl;
+    cout<<"Or would you like to play expert display with expert rules: (2)"<<endl;
+    cout<<"Or would you like to play expert display with base rule : (3)"<<endl;
+     
    while(true){
        getline(cin,input);
        if(input=="1" || input == "2" || input == "3"){
