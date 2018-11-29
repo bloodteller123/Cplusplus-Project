@@ -9,6 +9,7 @@
 #include "rewardDeck.h"
 #include "derivedGame.h"
 #include "derivedBoard.h"
+#include "derivedRules.h"
 
 #include <iostream>
 #include <sstream>
@@ -164,7 +165,7 @@ int main(){
 
 //  WHILE GAME OVER IS FALSE
 
-    Rules rules(Tplayers);
+    DerivedRules rules(Tplayers);
     /*
         Create rule
     */
