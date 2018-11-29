@@ -185,7 +185,7 @@ int main(){
         while(!rules.roundOver(game)){
             bool crab=false;
             if(ind == Tplayers.size()){ind = 0;}
-            cout<<"11111111111111"<<endl;
+             
             /*
             # next active player takes a turn
             */
@@ -193,7 +193,7 @@ int main(){
                ind++;
                if(ind >= Tplayers.size()){ind = 0;}
            }
-           cout<<"2222222222222222222"<<endl;
+            
             cout<<"---------------------------------------------------------------------"<<endl;
             cout<<"---------------------------------------------------------------------"<<endl;
 
@@ -324,6 +324,8 @@ int main(){
         }
         // remaining player gets reward
         cout<<"Winner for this round is :"+nameOfPlayer[win]<<endl;
+        cout<<"---------------------------------------------------------------------"<<endl;
+        cout<<endl;
         game.getPlayer(Tplayers[win].getSide()).addReward(*reward[game.getRound()]);
         
         game.nextRound();
