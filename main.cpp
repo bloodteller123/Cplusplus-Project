@@ -7,6 +7,8 @@
 #include "rules.h"
 #include "player.h"
 #include "rewardDeck.h"
+#include "derivedGame.h"
+#include "derivedBoard.h"
 
 #include <iostream>
 #include <sstream>
@@ -89,8 +91,12 @@ int main(){
    /*
     Now building game logic
    */
-    Board board;
-    Game game(board,mode);
+    //Board board;
+    //Game game(board,mode);
+    DerivedBoard board;
+    DerivedGame game(board,mode);
+
+
    // cout<<"TWO BOARD ARE EQUAL? "<<(&board == &game.board)<<endl;
    // cout<<&board<<": "<<&game.board<<endl;
     
@@ -122,10 +128,6 @@ int main(){
             game.getCard(Game::Letter::A,Game::Number::Number4);
             sleep_for(nanoseconds(10));
             sleep_until(system_clock::now() + seconds(1));
-            //cout<<game<<endl;
-           // game.turnFaceDown(Game::Letter::A,Game::Number::Number2);
-            //game.turnFaceDown(Game::Letter::A,Game::Number::Number3);
-            //game.turnFaceDown(Game::Letter::A,Game::Number::Number4);
             
         }else if(Tplayers[i].getSide() == Player::Side::bottom){
             game.getCard(Game::Letter::E,Game::Number::Number2);
@@ -133,30 +135,18 @@ int main(){
             game.getCard(Game::Letter::E,Game::Number::Number4);
             sleep_for(nanoseconds(10));
             sleep_until(system_clock::now() + seconds(1));
-            //cout<<game<<endl;
-            //game.turnFaceDown(Game::Letter::E,Game::Number::Number2);
-            //game.turnFaceDown(Game::Letter::E,Game::Number::Number3);
-            //game.turnFaceDown(Game::Letter::E,Game::Number::Number4);
         }else if(Tplayers[i].getSide() == Player::Side::right){
             game.getCard(Game::Letter::B,Game::Number::Number5);
             game.getCard(Game::Letter::C,Game::Number::Number5);
             game.getCard(Game::Letter::D,Game::Number::Number5);
             sleep_for(nanoseconds(10));
             sleep_until(system_clock::now() + seconds(1));
-            //cout<<game<<endl;
-            //game.turnFaceDown(Game::Letter::B,Game::Number::Number5);
-            //game.turnFaceDown(Game::Letter::C,Game::Number::Number5);
-            //game.turnFaceDown(Game::Letter::D,Game::Number::Number5);
         }else if(Tplayers[i].getSide() == Player::Side::left){
             game.getCard(Game::Letter::B,Game::Number::Number1);
             game.getCard(Game::Letter::C,Game::Number::Number1);
             game.getCard(Game::Letter::D,Game::Number::Number1);
             sleep_for(nanoseconds(10));
             sleep_until(system_clock::now() + seconds(1));
-            //cout<<game<<endl;
-            //game.turnFaceDown(Game::Letter::B,Game::Number::Number1);
-            //game.turnFaceDown(Game::Letter::C,Game::Number::Number1);
-            //game.turnFaceDown(Game::Letter::D,Game::Number::Number1);
         }
 
         cout<<game<<endl;
@@ -191,7 +181,7 @@ int main(){
         string blockCard = "";
         
         cout<<"Now Startig Game: "<<endl;
-        cout<<game<<endl;
+        cout<<board<<endl;
         while(!rules.roundOver(game)){
             bool crab=false;
             if(ind == Tplayers.size()){ind = 0;}
@@ -325,7 +315,7 @@ int main(){
             }
            // cout<<"ind: "<<ind<<"-------------"<<endl;
            //if(!crab ||rules.roundOver(game)){
-            cout<<game<<endl;
+            cout<<board<<endl;
             sleep_for(nanoseconds(10));
             sleep_until(system_clock::now() + seconds(1));
            //}
