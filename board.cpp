@@ -91,11 +91,9 @@ bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff t
     help[l*_size + n] = face;
     faceup[l*_size + n] = false;
 
-     if(_mode == "2"){
+     if(_mode == "2" || _mode == "3"){ // it is for expert display mode
         if(face){
-            std::cout<<isFaceUp(l,n)<<"!!!!!"<<std::endl;
-            std::cout<<faceup[l*_size+n]<<std::endl;
-            std::cout<<l*_size+n<<std::endl;
+
             std::cout<<"Turning face down"<<std::endl;
             updateExpertBoard(e_array,l,n);
             return true;
@@ -117,7 +115,7 @@ bool Board::turnFaceUp(const Letter& l, const Number& n){ // turnFACEup iff this
     help[l*_size + n] = face;
     faceup.at(l*_size + n) = true;
  
-    if(_mode ==  "2"){
+    if(_mode ==  "2"|| _mode == "3"){
         if(!face){
             updateExpertBoard(e_array,l,n);
             return true;
@@ -176,7 +174,7 @@ void Board::reset(){
     if(_mode == "1"){
         initializeBaseBoard(b_array);
     }
-    else if(_mode == "2"){
+    else if(_mode == "2"|| _mode == "3"){
         initializeExpertBoard(e_array);
     }
 
@@ -200,7 +198,7 @@ ostream& operator<<(ostream& os, const Board& board){
             os<<b_number[i];
         } 
     }
-    else if(board._mode == "2"){
+    else if(board._mode == "2"|| board._mode == "3"){
   
         for(int i=0;i<3;++i){
             os<<board.e_array[i]<<"\n";
