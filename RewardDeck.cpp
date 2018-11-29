@@ -38,7 +38,7 @@ RewardDeck& RewardDeck::make_RewardDeck(){
     for(i=0;i<NReward;++i){
         if(i>2){
             if(i>4){
-                if(i==6){// 1 rewards with 5 ruby
+                if(i==6){// 1 rewards with 4 ruby
                     s_RewardDeck.storage.push_back(new Reward(4));
                 }else{
                     s_RewardDeck.storage.push_back(new Reward(3));
