@@ -224,7 +224,7 @@ int main(){
                 //ind++;
                 }
             /*
-            In expert mode, animal spacial ability is triggered and player[ind] is actived
+            In expert mode, animal spacial ability is triggered iff player[ind] is actived
             */
             if((mode == "E" || mode == "e") && game.getPlayer(Tplayers[ind].getSide()).isActive()) {
                 if(blockCard != "")
@@ -288,7 +288,7 @@ int main(){
                             cout<<"Invalid Input, Please choose neighbour"<<endl;
                             getline(cin,n);
                         }
-                        //get the copy of octopus
+                        //get the octopus
                         Card* c = game.getCard(letter.find(input[0])->second,number.find(input[1])->second);
                         // check if card to be exchanged is faceup/down
                         Card* c_ex;
@@ -300,6 +300,7 @@ int main(){
                             c_ex = game.getCard(letter.find(n[0])->second,number.find(n[1])->second);
                         }
                         game.setCard(letter.find(n[0])->second,number.find(n[1])->second,c);
+                        cout<<"TOW CARDS ARE EQUAL?: "<<(c_ex == c)<<endl;
                         game.setCard(letter.find(input[0])->second,number.find(input[1])->second,c_ex);
                         
                         // now two cards are exchanged --> input[0],[1] is now chosen card (origanl is octopus)
