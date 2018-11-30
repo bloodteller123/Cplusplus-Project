@@ -25,12 +25,19 @@ class Board;
 Game::Game(Board& b,string s):mode(s),board(b){
     _round = 0;
 
-    if(mode == "b"||(mode == "B")){
+    if(mode == "1"){
         std::cout<<"BASE MODE ON"<<std::endl;
     }
-    if(mode == "e"||(mode == "E")){
-        std::cout<<"EXPERT MODE ON"<<std::endl;
+    if(mode == "2"){
+        std::cout<<"EXPERT DISPLAY WITH EXPERT RULES MODE ON"<<std::endl;
     }
+    if(mode == "3"){
+        std::cout<<"EXPERT DISPLAY WITH BASE RULES MODE ON"<<std::endl;
+    }
+    if(mode == "4"){
+        std::cout<<"BASE DISPLAY WITH BASE RULES MODE ON"<<std::endl;
+    }
+    
    // board.setMode(mode);
     
     /*
