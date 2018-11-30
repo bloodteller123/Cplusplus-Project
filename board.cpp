@@ -99,7 +99,7 @@ bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff t
             return true;
         }
     }
-    else if(_mode == "1"){
+    else if(_mode == "1" || _mode=="4"){
         if(face){
                 updateBaseBoard(b_array,l,n);
                 return true;
@@ -122,12 +122,13 @@ bool Board::turnFaceUp(const Letter& l, const Number& n){ // turnFACEup iff this
         }
     }
 
-    else if(_mode == "1"){
+    else if(_mode == "1"|| _mode=="4"){
         if(!face){
- 
+            
         updateBaseBoard(b_array,l,n);
         return true;
         }
+        std::cout<<"!!!!!!!!!!!!!!"<<std::endl;
     }
     
     
@@ -171,7 +172,7 @@ void Board::reset(){
     help[12] = true;
     position.clear();
     expertHelpCard.clear();
-    if(_mode == "1"){
+    if(_mode == "1"|| _mode=="4"){
         initializeBaseBoard(b_array);
     }
     else if(_mode == "2"|| _mode == "3"){
@@ -185,7 +186,7 @@ ostream& operator<<(ostream& os, const Board& board){
     string b_letter[19]=  {" ","A"," "," "," ","B"," "," "," ","C"," "," "," ","D"," "," "," ","E"," "};
     string b_number[19] = {" ","1"," "," "," ","2"," "," "," ","3"," "," "," ","4"," "," "," ","5"," "};
     
-    if(board._mode == "1"){ // its under base mode
+    if(board._mode == "1"|| board._mode=="4"){ // its under base mode
           
 
         for(int i=0;i<19;++i){
