@@ -50,7 +50,7 @@ int main(){
 
    buildLetter(letter);
    buildNumber(number);
-   string input = "";
+   string response = "";
 
    int numberOfPlayer = 0;  
    vector<string> nameOfPlayer;
@@ -60,11 +60,12 @@ int main(){
     cout<<"Would you like to play base mode: (1)"<<endl;
     cout<<"Or would you like to play expert display with expert rules: (2)"<<endl;
     cout<<"Or would you like to play expert display with base rule : (3)"<<endl;
+    cout<<"Or would you like to play base display with expert rule : (4)"<<endl;
      
    while(true){
-       getline(cin,input);
-       if(input=="1" || input == "2" || input == "3"){
-           mode = input;
+       getline(cin,response);
+       if(response=="1" || response == "2" || response == "3"|| response == "4"){
+           mode = response;
            break;
        }
        cout<< "Invalid input, please Enter 1 or 2 or 3"<<endl;
@@ -72,8 +73,8 @@ int main(){
    cout<<"Your choice is: "<<mode<<endl;
    while(true){
        cout<<"Please Enter Number Of Players (2-4) "<<endl;
-       getline(cin,input);
-       stringstream ss(input);
+       getline(cin,response);
+       stringstream ss(response);
        if(ss>>numberOfPlayer){
            if((numberOfPlayer>=2)&&(numberOfPlayer<=4))
                 break;
@@ -84,8 +85,8 @@ int main(){
    int num = numberOfPlayer;
    while(num!=0){
        cout<<"Please enter Name for players one by one"<<endl;
-       getline(cin,input);
-       nameOfPlayer.push_back(input);
+       getline(cin,response);
+       nameOfPlayer.push_back(response);
        num--;
    }
    for(int i=1;i<nameOfPlayer.size()+1;++i){
@@ -229,7 +230,7 @@ int main(){
             /*
             In expert mode, animal spacial ability is triggered iff player[ind] is actived
             */
-            if((mode == "2") && game.getPlayer(Tplayers[ind].getSide()).isActive()) {
+            if((mode == "2" || mode =="4") && game.getPlayer(Tplayers[ind].getSide()).isActive()) {
                 if(blockCard != "")
                     game.setBlock(false,letter.find(blockCard[0])->second,number.find(blockCard[1])->second);//unblock the card
                 string animal = rules.triggerAbility(game,ind);
@@ -307,7 +308,21 @@ int main(){
                         game.setCard(letter.find(input[0])->second,number.find(input[1])->second,c_ex);
                         
                         // now two cards are exchanged --> input[0],[1] is now chosen card (origanl is octopus)
-                        game.updatePosition(letter.find(n[0])->second,number.find(n[1])->second,letter.find(input[0])->second,number.find(input[1])->second);
+                        if(mode == "2")
+                            game.updatePosition(letter.find(n[0])->second,number.find(n[1])->second,letter.find(input[0])->second,number.find(input[1])->second);
+                        else if(mode =="4"){
+                            /*
+                                if the non-octopus is Fd, faceup first then turn down to trigger updateboard 
+                            */
+                            if(!board.isFaceUp(letter.find(input[0])->second,number.find(input[1])->second)){
+                                board.turnFaceUp(letter.find(input[0])->second,number.find(input[1])->second);
+                                board.turnFaceDown(letter.find(input[0])->second,number.find(input[1])->second);
+                            }
+                            // this is for octopus to trigger updateboard
+                            board.turnFaceDown(letter.find(n[0])->second,number.find(n[1])->second);
+                            board.turnFaceUp(letter.find(n[0])->second,number.find(n[1])->second);
+                        
+                        }
                     }
                 }
             }           
