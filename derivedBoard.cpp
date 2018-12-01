@@ -54,7 +54,7 @@ int DerivedBoard::getNFUCard(){
     return num;
 }
 
-void DerivedBoard::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,const Number& n2){// l2,n2 is chosen card(was octopus)
+void DerivedBoard::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,const Number& n2){
     string p_op = letter.find(l1)->second + number.find(n1)->second;
     string p_ex = letter.find(l2)->second + number.find(n2)->second;
     for(int i=0;i<position.size();++i){
