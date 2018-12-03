@@ -19,6 +19,7 @@
 #include <algorithm>
 #include <chrono>
 #include <thread>
+#include <exception>
 
 using std::cout;
 using std::endl;
@@ -98,8 +99,11 @@ int main(){
    */
     //Board board;
     //Game game(board,mode);
-    DerivedBoard board;
-    DerivedGame game(board,mode);
+    try{
+        DerivedBoard board;
+        DerivedGame game(board,mode);
+
+ 
 
 
    // cout<<"TWO BOARD ARE EQUAL? "<<(&board == &game.board)<<endl;
@@ -206,7 +210,8 @@ int main(){
             string input = "";   
             cout<<"Player "<<nameOfPlayer[ind]<<" now choose one card"<<endl;
             getline(cin,input);
-            while(input==""|| (input[0] == 'C' && input[1] == '3')|| (board.isFaceUp(letter.find(input[0])->second,number.find(input[1])->second))){
+
+            while((!letter.count(input[0]) || !number.count(input[1])) || input==""|| (input[0] == 'C' && input[1] == '3')|| (board.isFaceUp(letter.find(input[0])->second,number.find(input[1])->second))){
                 cout<<"Letter is " << input[0] <<" number is "<<input[1]<<endl;
                 cout<<"Invalid Input, Please choose one card"<<endl;
         
@@ -214,11 +219,24 @@ int main(){
             }
 
             cout<<"Letter is " << input[0] <<" number is "<<input[1]<<endl;
+            
             while(game.getCard(letter.find(input[0])->second,number.find(input[1])->second) == nullptr){
                 cout<<"Sorry this card is blocked, please try other cards: "<<endl;
                 getline(cin,input);
             }
-            game.setCurrentCard(game.getCard(letter.find(input[0])->second,number.find(input[1])->second));
+            /*
+                try catch
+            */
+
+            try{
+                 game.setCurrentCard(game.getCard(letter.find(input[0])->second,number.find(input[1])->second));
+                
+            }
+            catch(const std::out_of_range& oor){
+                std::cerr<<"out of range: "<<oor.what()<<endl;
+            }
+
+
             if(!rules.isValid(game) || allFaceup(letter,number,board)){
                 /*
                     set current player as inactive
@@ -242,7 +260,7 @@ int main(){
                     if(!rules.roundOver(game)){
                         cout<<"Please enter the position in which the card will be blocked for next player: "<<endl;
                         getline(cin,blockCard);
-                        while(blockCard[0] == 'C' && blockCard[1] == '3'|| (board.isFaceUp(letter.find(blockCard[0])->second,number.find(blockCard[1])->second))){
+                        while((letter.count(input[0])&& number.count(input[1])) || blockCard[0] == 'C' && blockCard[1] == '3'|| (board.isFaceUp(letter.find(blockCard[0])->second,number.find(blockCard[1])->second))){
                             cout<<"Invalid Input, Please choose one card"<<endl;
                             getline(cin,blockCard);
                         }
@@ -382,7 +400,10 @@ int main(){
 
 //  END OF WHILE GAME OVER IS FALSE
 
-
+        }
+    catch (const char* msg){
+        std::cerr<<msg<<endl;
+    }
 
 
 
