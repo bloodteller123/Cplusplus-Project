@@ -202,7 +202,7 @@ int main(){
             cout<<"---------------------------------------------------------------------"<<endl;
             cout<<"---------------------------------------------------------------------"<<endl;
 
-           // cout<<"ind: "<<ind<<"-------------"<<endl;
+            cout<<"ind: "<<ind<<"-------------"<<endl;
             string input = "";   
             cout<<"Player "<<nameOfPlayer[ind]<<" now choose one card"<<endl;
             getline(cin,input);

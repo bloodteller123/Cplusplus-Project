@@ -69,6 +69,7 @@ bool Rules::roundOver(const Game& game){
    }
    if(count==1){
        restart = true;
+       _count = 0;
        return true;
    }
    restart = false;
@@ -77,17 +78,20 @@ bool Rules::roundOver(const Game& game){
 }
 
 const Player& Rules::getNextPlayer(const Game& game){
-    if(restart)
-        _count = 0;
+    //if(restart)
+       // _count = 0;
 // may be a for loop herer?
 
 //till find next active player
+    
     if(_count >= players.size()){
         _count = 0;
     }
+    cout<<"_count FOR Current player: "<<_count<<endl;
     const Player& player = game.getPlayer(players[_count].getSide());
-    _count++;
 
+     _count++;
+    cout<<"_count for Next player: "<<_count<<endl;
     return player;
     
 }
@@ -113,6 +117,9 @@ void Rules::turtle(int& ind){
     ind++;
     if(ind >= players.size()){
         ind = 0;
+    }
+    if(_count>=players.size()){
+        _count = 0;
     }
     _count++;
 }
