@@ -68,7 +68,7 @@ int main(){
            mode = response;
            break;
        }
-       cout<< "Invalid input, please Enter 1 or 2 or 3"<<endl;
+       cout<< "Invalid input, please Enter 1 or 2 or 3 or 4"<<endl;
    }
    cout<<"Your choice is: "<<mode<<endl;
    while(true){

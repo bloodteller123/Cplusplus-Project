@@ -172,6 +172,7 @@ void Board::reset(){
     help[12] = true;
     position.clear();
     expertHelpCard.clear();
+    preFace = true;
     if(_mode == "1"|| _mode=="4"){
         initializeBaseBoard(b_array);
     }
