@@ -28,10 +28,3 @@ Reward::operator int() const{
 
 
 
-////#ifdef RUBY_DEBUG PRIVATE CONSTRUCTOR ---> NO TEST CASE NEEDED?
-    int main(){ // used to tset all public funcs
-        
-    }
-
-
-//#endif
