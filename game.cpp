@@ -162,3 +162,12 @@ void Game::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,con
     board.updatePosition( l1,  n1,  l2,  n2);
 }
 */
+
+
+#ifdef GAME_DEBUG
+    int main(){ // used to tset all public funcs
+        
+    }
+
+
+#endif

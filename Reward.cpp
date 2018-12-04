@@ -25,3 +25,6 @@ ostream& operator<<( ostream& os, const Reward& r){
 Reward::operator int() const{
     return ruby;
 }
+
+
+
