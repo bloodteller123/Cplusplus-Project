@@ -22,6 +22,7 @@ class Deck_C{
 
         //~Deck_C();
     public:
+        Deck_C() = default;
 
         virtual void shuffles()=0;
         C* getNext();
