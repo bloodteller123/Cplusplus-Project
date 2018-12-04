@@ -58,10 +58,11 @@ int main(){
    vector<Reward*> reward;
    string mode;
    //char mode = {0};
-    cout<<"Would you like to play base mode: (1)"<<endl;
-    cout<<"Or would you like to play expert display with expert rules: (2)"<<endl;
-    cout<<"Or would you like to play expert display with base rule : (3)"<<endl;
-    cout<<"Or would you like to play base display with expert rule : (4)"<<endl;
+    cout<<"Please Select a Game Mode"<<endl;
+    cout<<"1:    Standard Game Mode"<<endl;
+    cout<<"2:    Expert Game Mode"<<endl;
+    cout<<"3:    Expert Desplay With Standard Rules"<<endl;
+    cout<<"4:    Standard Desplay With Expert Rules"<<endl;
      
    while(true){
        getline(cin,response);
@@ -69,7 +70,7 @@ int main(){
            mode = response;
            break;
        }
-       cout<< "Invalid input, please Enter 1 or 2 or 3 or 4"<<endl;
+       cout<< "Invalid input, please enter 1, 2, 3, or 4"<<endl;
    }
    cout<<"Your choice is: "<<mode<<endl;
    while(true){
@@ -80,12 +81,12 @@ int main(){
            if((numberOfPlayer>=2)&&(numberOfPlayer<=4))
                 break;
        }
-       cout<<"Invalid Number, please try again"<<endl;
+       cout<<"Invalid Entry, please try again"<<endl;
    }
    cout<<numberOfPlayer<<" Players are chosen"<<endl;
    int num = numberOfPlayer;
    while(num!=0){
-       cout<<"Please enter Name for players one by one"<<endl;
+       cout<<"Please enter the Names for players one by one"<<endl;
        getline(cin,response);
        nameOfPlayer.push_back(response);
        num--;
