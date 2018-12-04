@@ -25,3 +25,13 @@ ostream& operator<<( ostream& os, const Reward& r){
 Reward::operator int() const{
     return ruby;
 }
+
+
+
+////#ifdef RUBY_DEBUG PRIVATE CONSTRUCTOR ---> NO TEST CASE NEEDED?
+    int main(){ // used to tset all public funcs
+        
+    }
+
+
+//#endif
