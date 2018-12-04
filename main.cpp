@@ -228,14 +228,7 @@ int main(){
                 try catch
             */
 
-            try{
-                 game.setCurrentCard(game.getCard(letter.find(input[0])->second,number.find(input[1])->second));
-                
-            }
-            catch(const std::out_of_range& oor){
-                std::cerr<<"out of range: "<<oor.what()<<endl;
-            }
-
+            game.setCurrentCard(game.getCard(letter.find(input[0])->second,number.find(input[1])->second));
 
             if(!rules.isValid(game) || allFaceup(letter,number,board)){
                 /*
@@ -403,6 +396,9 @@ int main(){
         }
     catch (const char* msg){
         std::cerr<<msg<<endl;
+    }
+    catch(const std::out_of_range& oor){
+        std::cerr<<"out of range: "<<oor.what()<<endl;
     }
 
 
