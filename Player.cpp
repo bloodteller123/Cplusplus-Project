@@ -45,7 +45,7 @@ int Player::getNRubies(){
 
 /// TO BE COMPLETED
 void Player::addReward(const Reward& c_Reward){
-    this->ruby += c_Reward.operator int();
+    this->ruby += c_Reward;
 }
 
 // TO BE COMPLETED
@@ -95,3 +95,32 @@ void Player::setSide(Player::Side s){
     }
      
 }
+
+
+
+#ifdef PLAYER_DEBUG
+#include <cassert>
+#include <iostream>
+    int main(){ // used to tset all public funcs
+        Player p("TOM",0);
+
+        assert(p.getName()=="TOM");
+        std::cout<<"pass first assert"<<std::endl;
+        p.setAcive(false);
+
+        assert(false==p.isActive());
+        std::cout<<"pass second assert"<<std::endl;
+
+        // void addReward(const Reward&)?
+
+        p.setDisplayMode(true);
+        std::cout<<p<<std::endl;
+
+        p.setSide(Player::Side::top);
+        assert(p.getSide() == Player::Side::top);
+        std::cout<<"pass last assert"<<std::endl;
+
+    }
+
+
+#endif
