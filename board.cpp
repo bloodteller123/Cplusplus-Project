@@ -81,7 +81,7 @@ Board::Board(){
 bool Board::isFaceUp(const Letter& l, const Number& n) const{
     // int q = letter + number
     // v_card[q];
-    if(!(letter.count(l)&&number.count(n))){
+    if((!letter.count(l)||!number.count(n))){
         throw std::out_of_range("invalid position");
     }
     return faceup[l*_size + n]; 
@@ -89,7 +89,7 @@ bool Board::isFaceUp(const Letter& l, const Number& n) const{
 }
 
 bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff this card is up
-    if(!(letter.count(l)&&number.count(n))){
+    if((!letter.count(l)||!number.count(n))){
             throw std::out_of_range("invalid position");
         }
      
@@ -116,7 +116,7 @@ bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff t
 }
 
 bool Board::turnFaceUp(const Letter& l, const Number& n){ // turnFACEup iff this card is down
-     if(!(letter.count(l)&&number.count(n))){
+     if((!letter.count(l)||!number.count(n))){
         throw std::out_of_range("invalid position");
     }
 
@@ -146,7 +146,7 @@ bool Board::turnFaceUp(const Letter& l, const Number& n){ // turnFACEup iff this
 }                                                                                                                                                          
 
 Card* Board::getCard(const Letter& l, const Number& n){
-    if(!(letter.count(l)&&number.count(n))){
+    if((!letter.count(l)||!number.count(n))){
         throw std::out_of_range("invalid position");
     }
 
@@ -160,10 +160,10 @@ Card* Board::getCard(const Letter& l, const Number& n){
 
 
 void Board::setCard(const Letter& l, const Number& n,Card* c){
-    if(!(letter.count(l)&&number.count(n))){
+    if((!letter.count(l)||!number.count(n))){
         throw std::out_of_range("invalid position");
     }
-    
+
     if(!preFace){           // if this card is FD, update faceup[at new position]
         preFace = isFaceUp(l,n);
         faceup[l*_size+n] = false;
