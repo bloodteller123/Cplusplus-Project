@@ -489,3 +489,49 @@ void Board::buildNumber(std::map<Board::Number,string> &n){
     n.insert(std::pair<Board::Number,string>(Board::Number::Number4,"4"));
     n.insert(std::pair<Board::Number,string>(Board::Number::Number5,"5"));
 }
+
+
+
+//Testing Driver
+
+
+#ifdef BOARD_DEBUG
+#include <cassert>
+#include <iostream>
+
+/* The following public methods are tested
+ 
+ bool isFaceUp(const Letter&, const Number&) const;
+ bool turnFaceUp(const Letter&, const Number&);
+ bool turnFaceDown(const Letter&, const Number&);
+ Card* getCard(const Letter&, const Number&);
+ void setCard(const Letter&, const Number&,Card*);
+ void reset();
+ 
+ */
+ 
+int main(){ // used to tset all public funcs
+    
+    Board b();
+    
+    const Letter aLetter = A;
+    const Number aNumber = Number1;
+    
+    //all cards start face down, therefor should return false
+    assert(b.isFaceUp(&aLetter, &aNumber) == false );
+    std::cout<<"pass first assert"<<std::endl;
+    
+    //turning card face up, then verifying that it is face up
+    b.turnFaceUp(&aLetter, &aNumber); //turn card face up
+    assert(b.isFaceUp(&aLetter, &aNumber) == true); //verify that it is face up
+    std::cout<<"pass second assert"<<std::endl;
+    
+    //turning card face down again, then verifying it is face down
+    b.turnFaceDown(&aLetter, &aNumber);//turn card face down
+    assert(b.isFaceUp(&aLetter, &aNumber) == false); //verifying the card is now face down
+    std::cout << "pass third assert" << std::end1;
+    
+}
+
+
+#endif

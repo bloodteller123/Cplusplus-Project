@@ -59,12 +59,24 @@ int Card::getNRows(){
 }
 
 
-#ifdef  CARD_DEBUG // not working here because card(fa,fb) is private
-    int main(){
-        Card c(Card::FaceAnimal::CRAB,Card::FaceBackGround::Red);
+//TESTING DRIVER
 
+#ifdef CARD_DEBUG
+#include <cassert>
+#include <iostream>
 
+/* The following public methods are tested
+ 
+ int getNRows;
+ 
+ */
 
-    }
+int main (){
+    
+    Card c;
+    assert(c.getNRows() == 3 ); //Height is defined as 3, therefore
+    std::cout << "pass first assert" << std::endl; //getNRows must return 3
+    
+}
 
 #endif
