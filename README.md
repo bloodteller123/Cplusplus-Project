@@ -4,6 +4,8 @@ Card Game
 1st mode: base mode ; 2nd mode: expert rules/display mode; 3rd mode: expert display base rule; 4th mode: base display expert mode
 
 0.  remark: test.cpp can be used as guide to develop test cases for all classes
+-1.  function tests in Deck_c is done in CD.cpp
+
 1. shuffle function should be CHECKED
 
 2. test_driver needs to be done
