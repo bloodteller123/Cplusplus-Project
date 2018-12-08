@@ -93,7 +93,7 @@ bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff t
             throw std::out_of_range("invalid position");
         }
      
-    bool face= faceup[l*_size + n];
+    bool face= faceup[l*_size + n]; // update corresponding variables
     help[l*_size + n] = face;
     faceup[l*_size + n] = false;
 
@@ -105,7 +105,7 @@ bool Board::turnFaceDown(const Letter& l, const Number& n){//turn Facedown iff t
             return true;
         }
     }
-    else if(_mode == "1" || _mode=="4"){
+    else if(_mode == "1" || _mode=="4"){ // it is for base display mode
         if(face){
                 updateBaseBoard(b_array,l,n);
                 return true;
@@ -121,26 +121,24 @@ bool Board::turnFaceUp(const Letter& l, const Number& n){ // turnFACEup iff this
     }
 
      
-    bool face= faceup[l*_size + n];
+    bool face= faceup[l*_size + n];// update corresponding variables
     help[l*_size + n] = face;
     faceup.at(l*_size + n) = true;
  
-    if(_mode ==  "2"|| _mode == "3"){
+    if(_mode ==  "2"|| _mode == "3"){  // it is for expert display mode
         if(!face){
             updateExpertBoard(e_array,l,n);
             return true;
         }
     }
 
-    else if(_mode == "1"|| _mode=="4"){
+    else if(_mode == "1"|| _mode=="4"){// it is for base display mode
         if(!face){
             
         updateBaseBoard(b_array,l,n);
         return true;
         }
-        std::cout<<"!!!!!!!!!!!!!!"<<std::endl;
     }
-    
     
     return false;
 }                                                                                                                                                          
@@ -150,10 +148,10 @@ Card* Board::getCard(const Letter& l, const Number& n){
         throw std::out_of_range("invalid position");
     }
 
-    if(isBlock[l*_size+n]){
+    if(isBlock[l*_size+n]){ // is the card is blocked, return nullptr
         return nullptr;
     }
-    turnFaceUp(l,n);
+    turnFaceUp(l,n); // in my assumpition, if getcard is called, usually this card is being turned faceup
     
     return v_card[l*_size+n]; 
 }
@@ -163,7 +161,9 @@ void Board::setCard(const Letter& l, const Number& n,Card* c){
     if((!letter.count(l)||!number.count(n))){
         throw std::out_of_range("invalid position");
     }
-
+    /*
+        preface is used to keep track of fu of the previous position
+    */
     if(!preFace){           // if this card is FD, update faceup[at new position]
         preFace = isFaceUp(l,n);
         faceup[l*_size+n] = false;
@@ -232,15 +232,9 @@ ostream& operator<<(ostream& os, const Board& board){
 
     return os;
 }
-/*
 
-void Board::setMode(string s){
-    mode = s;
-}
 
-*/
-
-void Board::updateBaseBoard(string (&b_array)[19],const Letter& l, const Number& n){
+void Board::updateBaseBoard(string (&b_array)[19],const Letter& l, const Number& n){ // used to update base board display
     int helper=0;
     int buffer = 0;
     int ind = l*_size + n;
@@ -273,10 +267,8 @@ void Board::updateBaseBoard(string (&b_array)[19],const Letter& l, const Number&
                 //second column 
                 if((v_card[helper+1])!=(v_card[ind])&& help[helper+1]){
                     arr[1] = (*v_card[helper+1])(j)+" ";
-                   // help[helper+1] = faceup[helper+1];
                 }else if((v_card[helper+1])==(v_card[ind])&& !help[helper+1]){
                     arr[1] = (*v_card[helper+1])(j)+" ";
-                   // help[helper+1] = faceup[helper+1];
                 }
                 else{
                     arr[1] = "zzz ";
@@ -289,10 +281,8 @@ void Board::updateBaseBoard(string (&b_array)[19],const Letter& l, const Number&
                 else{
                     if((v_card[helper+2])!=(v_card[ind])&& help[helper+2]){
                         arr[2] = (*v_card[helper+2])(j)+" ";
-                        //help[helper+2] = faceup[helper+2];
                     }else if((v_card[helper+2])==(v_card[ind])&& !help[helper+2]){
                         arr[2] = (*v_card[helper+2])(j)+" ";
-                       // help[helper+2] = faceup[helper+2];
                         }else{
                             arr[2] = "zzz ";
                         }   
@@ -301,10 +291,8 @@ void Board::updateBaseBoard(string (&b_array)[19],const Letter& l, const Number&
                 // fourth column
                 if((v_card[helper+3])!=(v_card[ind])&& help[helper+3]){
                     arr[3] = (*v_card[helper+3])(j)+" ";
-                   // help[helper+3] = faceup[helper+3];
                 }else if((v_card[helper+3])==(v_card[ind])&& !help[helper+3]){
                     arr[3] = (*v_card[helper+3])(j)+" ";
-                   // help[helper+3] = faceup[helper+3];
                 }
                 else{
                     arr[3] = "zzz ";
@@ -313,10 +301,8 @@ void Board::updateBaseBoard(string (&b_array)[19],const Letter& l, const Number&
                 // fifth column 
                 if((v_card[helper+4])!=(v_card[ind])&& help[helper+4]){
                     arr[4] = (*v_card[helper+4])(j)+" ";
-                   // help[helper+4] = faceup[helper+4];
                 }else if((v_card[helper+4])==(v_card[ind])&& !help[helper+4]){
                     arr[4] = (*v_card[helper+4])(j)+" ";
-                   // help[helper+4] = faceup[helper+4];
                 }
                 else{
                     arr[4] = "zzz ";
@@ -386,7 +372,7 @@ void Board::initializeExpertBoard(string (&e_array)[3]){
     }
 }
 
-void Board::updateExpertBoard(string (&e_array)[3],const Letter& l, const Number& n){
+void Board::updateExpertBoard(string (&e_array)[3],const Letter& l, const Number& n){// used to update expert board display
     int ind = l*_size + n;
     string p = letter.find(l)->second + number.find(n)->second;
     string row1 = "";
