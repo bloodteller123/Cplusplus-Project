@@ -114,7 +114,6 @@ void Player::setSide(Player::Side s){
         assert(false==p.isActive());
         std::cout<<"pass second assert"<<std::endl;
 
-        // void addReward(const Reward&)?
 
         p.setDisplayMode(true);
         std::cout<<p<<std::endl;
