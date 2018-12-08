@@ -14,7 +14,7 @@ void DerivedBoard::setMode(string m){
     _mode = m;
 }
 
-vector<string>& DerivedBoard::getNeighbour(const Letter& l,const Number& n){
+vector<string>& DerivedBoard::getNeighbour(const Letter& l,const Number& n){ // get neighbour for a certain card
     string s;
     _neighbours.clear();
     int ind = l*_size + n;
@@ -39,12 +39,12 @@ vector<string>& DerivedBoard::getNeighbour(const Letter& l,const Number& n){
     return _neighbours;
 }
 
-void DerivedBoard::setBlock(bool isBlocked,const Letter& l,const Number& n){
+void DerivedBoard::setBlock(bool isBlocked,const Letter& l,const Number& n){ // set the card to be blocked or not
     int ind = l*_size+n;
     isBlock[ind] = isBlocked;
 }
 
-int DerivedBoard::getNFUCard(){
+int DerivedBoard::getNFUCard(){ // return the number of FaceUp cards on the board
     int num = 0;
     for(int i=0;i<faceup.size();++i){
         if(faceup[i]== true){
@@ -54,7 +54,7 @@ int DerivedBoard::getNFUCard(){
     return num;
 }
 
-void DerivedBoard::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,const Number& n2){
+void DerivedBoard::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,const Number& n2){ // used for expert display(RUles) mode
     string p_op = letter.find(l1)->second + number.find(n1)->second;
     string p_ex = letter.find(l2)->second + number.find(n2)->second;
     for(int i=0;i<position.size();++i){
