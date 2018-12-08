@@ -87,7 +87,7 @@ CardDeck::~CardDeck(){
      }
 }
 
-#ifdef CD_DEBUG
+//#ifdef CD_DEBUG
 #include <cassert>
 #include <iostream>
 #include <vector>
@@ -95,16 +95,27 @@ using namespace std;
     int main(){ // used to tset all public funcs
 
         CardDeck &cd = CardDeck::make_CardDeck();
+        Card *c;
         vector<Card*> cv;
+        if(cd.isEmpty()==false){
+            cout<<"pass first test"<<endl;
+        }
         while(!cd.isEmpty()){
-            cv.push_back(cd.getNext());
+            c = cd.getNext();
+            if(c!=nullptr){
+                cout<<"pass second test"<<endl;
+            }
+            else{
+                cout<<"fail"<<endl;
+            }
+            cv.push_back(c);
         }
         
         //assert(cv.size()>=0); // there is card in vector
         if(cv.size()>0){
-            cout<<"pass first test"<<endl;
+            cout<<"pass second test"<<endl;
         }
     }
 
 
-#endif
+//#endif
