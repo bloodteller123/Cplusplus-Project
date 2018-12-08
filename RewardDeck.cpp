@@ -1,6 +1,8 @@
 /*
     //  Copyright © 2018 Zihan Chen. All rights reserved.
 */
+
+//#define RD_DEBUG
 #include "rewardDeck.h"
 #include "deck_C.h"
 #include "reward.h"
@@ -65,4 +67,25 @@ RewardDeck::~RewardDeck(){
      }
 }
 
+#ifdef RD_DEBUG
+#include <cassert>
+#include <iostream>
+#include <vector>
+using namespace std;
+    int main(){ // used to tset all public funcs
 
+        RewardDeck &rd = RewardDeck::make_RewardDeck();
+        vector<Reward*> reward;
+        while(!rd.isEmpty()){
+            reward.push_back(rd.getNext());
+        }
+        assert(reward.size()>=0); // there is reward in vector
+
+        cout<<"pass first assert"<<endl;
+        
+
+
+    }
+
+
+#endif
