@@ -444,7 +444,7 @@ int main(){ // used to tset all public funcs
     Card *c = b.getCard(Board::Letter::A, Board::Number::Number1);
     
     b.setCard(Board::Letter::B, Board::Number::Number2, b.getCard(Board::Letter::A, Board::Number::Number1));//setting card B2 to the card @ A1
-    assert(c == b.getCard(Board::Letter::A, Board::Number::Number1) );//verifying that the cards should be ==
+    assert(c == b.getCard(Board::Letter::B, Board::Number::Number2) );//verifying that the cards should be ==
     std::cout<<"pass final assert"<<std::endl;
     
     
