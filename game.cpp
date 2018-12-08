@@ -178,11 +178,9 @@ void Game::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,con
         try {
             
             Board b;
-            Game g = new Game(&b, "1");
+            Game g(b, "1");
             
-        } catch (...) {
-            std::cout << "New Game could not be made" << endl;
-        }
+       
         
         assert(g.getRound() == 0 ); // round is set to 0 upon create and therefor should == 0
         std::cout<<"pass first assert"<<std::endl;
@@ -191,23 +189,27 @@ void Game::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,con
         assert(g.getRound() == 1); // round should be == 1 after increment
         std::cout<<"pass second assert"<<std::endl;
         
-        g.setCurrentCard(g.getCard(A,Number1);//setting current card to A 1
-        assert(g.getCurrentCard() == g.getCard(A,Number1));//verifying that current card is == A 1
+        g.setCurrentCard(g.getCard(Game::Letter::A,Game::Number::Number1));//setting current card to A 1
+        assert(g.getCurrentCard() == g.getCard(Game::Letter::A,Game::Number::Number1));//verifying that current card is == A 1
         std::cout<<"pass third assert"<<std::endl;
         
-        assert(g.getPreviousCard() == nullptr); //no prev card exist, should return nullptr
+        assert(g.getPreviousCard() != nullptr); // prev card exist, should return  
         std::cout<<"pass fourth assert"<<std::endl;
         
-        g.setCard(B,Number2, g.getCard(A, Number1));//setting card B2 to the card @ A1
-        assert(g.getCard(A, Number1) == g.getCard(B, Number2));//verifying that the cards should be ==
+        Card *c = g.getCard(Game::Letter::A, Game::Number::Number1);
+        g.setCard(Game::Letter::B,Game::Number::Number2, g.getCard(Game::Letter::A, Game::Number::Number1));//setting card B2 to the card @ A1
+        assert(c == g.getCard(Game::Letter::B, Game::Number::Number2));//verifying that the cards should be ==
         std::cout<<"pass fifth assert"<<std::endl;
         
-        Player p1 (Nick, 0);// initailizing new player
-        p.setSide(Player::Side::top); //setting player side to top
-        g.addPlayer(&p); //adding player to game
+        Player p1 ("Nick", 0);// initailizing new player
+        p1.setSide(Player::Side::top); //setting player side to top
+        g.addPlayer(p1); //adding player to game
         Player p2 = g.getPlayer(Player::Side::top);//setting p2 to the player at position top
         assert(p2.getName()=="Nick"); //verifing that the new player has the same name as player at top
-        std::cout<"pass final assert"<<std::endl;
+        std::cout<<"pass final assert"<<std::endl;
+         } catch (...) {
+            std::cout << "New Game could not be made" << std::endl;
+        }
   
     }
 
