@@ -420,61 +420,6 @@ void Board::updateExpertBoard(string (&e_array)[3],const Letter& l, const Number
     }
 }
 
-
-/**
-vector<string>& Board::getNeighbour(const Letter& l,const Number& n){
-    string s;
-    neighbours.clear();
-    int ind = l*_size + n;
-    if((ind-_size)>=0){ // upper row
-        s = letter.find(static_cast<Letter>(static_cast<int>(l)-1))->second + number.find(static_cast<Number>(n))->second;
-        neighbours.push_back(s);
-    }
-    if((ind+_size)<=(size-1)){// lower row
-        s = letter.find(static_cast<Letter>(static_cast<int>(l)+1))->second + number.find(static_cast<Number>(n))->second;
-        neighbours.push_back(s);
-    }
-    if((ind + 1) >0 && (ind%_size)<4){
-        s = letter.find(static_cast<Letter>(l))->second + number.find(static_cast<Number>(static_cast<int>(n)+1))->second;
-        neighbours.push_back(s);
-
-    }
-    if((ind-1)>=0 && (ind%_size)!=0){
-        s = letter.find(static_cast<Letter>(static_cast<int>(l)))->second + number.find(static_cast<Number>(static_cast<int>(n)-1))->second;
-        neighbours.push_back(s);
-
-    }
-    return neighbours;
-}
-
-
-void Board::setBlock(bool isBlocked,const Letter& l,const Number& n){
-    int ind = l*_size+n;
-    isBlock[ind] = isBlocked;
-}
-
-int Board::getNFUCard(){
-    int num = 0;
-    for(int i=0;i<faceup.size();++i){
-        if(faceup[i]== true){
-            num++;
-        }
-    }
-    return num;
-}
-
-
-void Board::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,const Number& n2){// l2,n2 is chosen card(was octopus)
-    string p_op = letter.find(l1)->second + number.find(n1)->second;
-    string p_ex = letter.find(l2)->second + number.find(n2)->second;
-    for(int i=0;i<position.size();++i){
-        if(position[i] == p_ex && !isFaceUp(l2,n2)){
-            position.erase(position.begin()+i);
-        }
-    }
-    position.push_back(p_op);
-}
-**/
 void Board::buildLetter(std::map<Board::Letter,string> &l){
     l.insert(std::pair<Board::Letter,string>(Board::Letter::A,"A"));
     l.insert(std::pair<Board::Letter,string>(Board::Letter::B,"B"));
@@ -509,25 +454,27 @@ int main(){ // used to tset all public funcs
     
     Board b;
     
-    const Letter aLetter = A;
-    const Number aNumber = Number1;
+    //const Letter aLetter = A;
+    //const Number aNumber = Number1;
     
     //all cards start face down, therefor should return false
-    assert(b.isFaceUp(&aLetter, &aNumber) == false );
+    assert(b.isFaceUp(Board::Letter::A, Board::Number::Number1) == false );
     std::cout<<"pass first assert"<<std::endl;
     
     //turning card face up, then verifying that it is face up
-    b.turnFaceUp(&aLetter, &aNumber); //turn card face up
-    assert(b.isFaceUp(&aLetter, &aNumber) == true); //verify that it is face up
+    b.turnFaceUp(Board::Letter::A, Board::Number::Number1); //turn card face up
+    assert(b.isFaceUp(Board::Letter::A, Board::Number::Number1) == true); //verify that it is face up
     std::cout<<"pass second assert"<<std::endl;
     
     //turning card face down again, then verifying it is face down
-    b.turnFaceDown(&aLetter, &aNumber);//turn card face down
-    assert(b.isFaceUp(&aLetter, &aNumber) == false); //verifying the card is now face down
-    std::cout << "pass third assert" << std::end1;
+    b.turnFaceDown(Board::Letter::A, Board::Number::Number1);//turn card face down
+    assert(b.isFaceUp(Board::Letter::A, Board::Number::Number1) == false); //verifying the card is now face down
+    std::cout << "pass third assert" << std::endl;
     
-    b.setCard(B,Number2, b.getCard(A, Number1));//setting card B2 to the card @ A1
-    assert(b.getCard(A, Number1) == b.getCard(B, Number2));//verifying that the cards should be ==
+    Card *c = b.getCard(Board::Letter::A, Board::Number::Number1);
+    
+    b.setCard(Board::Letter::B, Board::Number::Number2, b.getCard(Board::Letter::A, Board::Number::Number1));//setting card B2 to the card @ A1
+    assert(c == b.getCard(Board::Letter::A, Board::Number::Number1) );//verifying that the cards should be ==
     std::cout<<"pass final assert"<<std::endl;
     
     

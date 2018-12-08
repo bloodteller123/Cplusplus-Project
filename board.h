@@ -68,7 +68,7 @@ class Board{
         void buildNumber(std::map<Board::Number,string> &n);
         
 
-        string _mode;
+        string _mode = "1";
         vector<string> _neighbours;
         vector<bool> isBlock;
         bool block = false;
