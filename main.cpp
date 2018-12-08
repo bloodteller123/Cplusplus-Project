@@ -104,18 +104,11 @@ int main(){
         
         DerivedBoard board;
         DerivedGame game(board,mode);
-
- 
-
-
-   // cout<<"TWO BOARD ARE EQUAL? "<<(&board == &game.board)<<endl;
-   // cout<<&board<<": "<<&game.board<<endl;
     
     vector<Player> Tplayers; // 
     for(int i=0;i<numberOfPlayer;++i){ // adding players to game
 
-        //game.addPlayer
-        
+
         Tplayers.emplace_back(nameOfPlayer[i],0);
         if(i==0){
             Tplayers[i].setSide(Player::Side::top);
@@ -130,7 +123,7 @@ int main(){
     }
     cout<<game<<endl;
 
-    for(int i=0;i<Tplayers.size();++i){
+    for(int i=0;i<Tplayers.size();++i){  // this for loop is revealing carsd to players
         cout<<"------------------------------------"<<endl;
         cout<<"Player "<<nameOfPlayer[i]<<" it's your turn to check 3 cards in front of you"<<endl;
         if(Tplayers[i].getSide() == Player::Side::top){
@@ -162,22 +155,21 @@ int main(){
 
         cout<<game<<endl;
         board.reset();
-        //game.board.reset();
     }
     
 
-    //cout<<game<<endl;
     RewardDeck &rd = RewardDeck::make_RewardDeck();
     while(!rd.isEmpty()){
         reward.push_back(rd.getNext());
     }
 
-
-//  WHILE GAME OVER IS FALSE
+    /*
+        Create rule
+    */
 
     DerivedRules rules(Tplayers);
     /*
-        Create rule
+        Game body starts
     */
     while(!rules.gameOver(game)){
         for(int i=0;i<Tplayers.size();++i){
@@ -185,7 +177,7 @@ int main(){
             game.getPlayer(Tplayers[i].getSide()).setAcive(true);
         }
         
-        game.setCurrentCard(nullptr);
+        game.setCurrentCard(nullptr); // current/prev cards should be nullptr when nobody is playing
         int ind = 0;
         int help = 0;
         int win = 0;
@@ -369,8 +361,8 @@ int main(){
     }
    // cout<<game<<endl;
     cout<<"End Of Game------------------------>"<<endl;
-    for(int i=0;i<Tplayers.size();++i){
-          game.getPlayer(Tplayers[i].getSide()).setDisplayMode(true);
+    for(int i=0;i<Tplayers.size();++i){   // set display Mode(end of game) to true
+          game.getPlayer(Tplayers[i].getSide()).setDisplayMode(true); 
     }
     cout<<game<<endl;
 
@@ -380,12 +372,10 @@ int main(){
         totalList.insert(std::pair<int,string>
             (game.getPlayer(Tplayers[i].getSide()).getNRubies(),
             game.getPlayer(Tplayers[i].getSide()).getName()));
-        finalReward.push_back(game.getPlayer(Tplayers[i].getSide()).getNRubies());
-
-      
+        finalReward.push_back(game.getPlayer(Tplayers[i].getSide()).getNRubies());      
     }
     
-    std::sort(finalReward.begin(),finalReward.end(),sortReward);
+    std::sort(finalReward.begin(),finalReward.end(),sortReward); // sort players based on rewards received
     for(int i=0;i<Tplayers.size();++i){
         cout<<"Player "<<totalList.find(finalReward[i])->second<<
         " you got "<<finalReward[i]<<" Rubies in this game"<<endl;
@@ -396,17 +386,13 @@ int main(){
         " for winning "<<finalReward.back()<<" rubies!!!!"<<endl;
 
 //  END OF WHILE GAME OVER IS FALSE
-
-        }
-    catch (const char* msg){
+    }catch (const char* msg){
         std::cerr<<msg<<endl;
         exit(0);
-    }
-    catch(const std::out_of_range& oor){
+    }catch(const std::out_of_range& oor){
         std::cerr<<"out of range: "<<oor.what()<<endl;
         exit(0);
     }
-
 
     return 0;
 }
