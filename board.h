@@ -1,3 +1,4 @@
+//#define BOARD_DEBUG 
 #ifndef BOARD
 #define BOARD
 /*

@@ -1,3 +1,4 @@
+//#define CARD_DEBUG
 #ifndef CARD
 #define CARD
 /*
