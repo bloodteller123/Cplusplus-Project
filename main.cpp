@@ -101,6 +101,7 @@ int main(){
     //Board board;
     //Game game(board,mode);
     try{
+        
         DerivedBoard board;
         DerivedGame game(board,mode);
 
@@ -397,6 +398,7 @@ int main(){
         }
     catch (const char* msg){
         std::cerr<<msg<<endl;
+        exit(0);
     }
     catch(const std::out_of_range& oor){
         std::cerr<<"out of range: "<<oor.what()<<endl;
