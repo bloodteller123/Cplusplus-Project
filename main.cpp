@@ -208,7 +208,7 @@ int main(){
             cout<<"---------------------------------------------------------------------"<<endl;
             cout<<"---------------------------------------------------------------------"<<endl;
 
-            cout<<"ind: "<<ind<<"-------------"<<endl;
+            cout<<"ROUND: "<<game.getRound()<<"-----------------------------------------"<<endl;
             string input = "";   
             cout<<"Player "<<nameOfPlayer[ind]<<" now choose one card"<<endl;
             getline(cin,input);
@@ -243,9 +243,11 @@ int main(){
             /*
             In expert mode, animal spacial ability is triggered iff player[ind] is actived
             */
-            if((mode == "2" || mode =="4") && game.getPlayer(Tplayers[ind].getSide()).isActive()) {
-                if(blockCard != "")
+            if(blockCard != "")
                     game.setBlock(false,letter.find(blockCard[0])->second,number.find(blockCard[1])->second);//unblock the card
+            if((mode == "2" || mode =="4") && game.getPlayer(Tplayers[ind].getSide()).isActive()) {
+                //if(blockCard != "")
+                   // game.setBlock(false,letter.find(blockCard[0])->second,number.find(blockCard[1])->second);//unblock the card
                 string animal = rules.triggerAbility(game,ind);
                 blockCard = "";
                 if(animal == "TURTLE"){ //THIS BLOCK IS FOR TURTLE
@@ -255,7 +257,7 @@ int main(){
                     if(!rules.roundOver(game)){
                         cout<<"Please enter the position in which the card will be blocked for next player: "<<endl;
                         getline(cin,blockCard);
-                        while((letter.count(input[0])&& number.count(input[1])) || blockCard[0] == 'C' && blockCard[1] == '3'|| (board.isFaceUp(letter.find(blockCard[0])->second,number.find(blockCard[1])->second))){
+                        while((!letter.count(input[0]) || !number.count(input[1])) || (blockCard[0] == 'C' && blockCard[1] == '3')|| (board.isFaceUp(letter.find(blockCard[0])->second,number.find(blockCard[1])->second))){
                             cout<<"Invalid Input, Please choose one card"<<endl;
                             getline(cin,blockCard);
                         }
@@ -275,7 +277,7 @@ int main(){
                              cout<<"Turn one card facedown: "<<endl;
                             string toBeFD;
                             getline(cin,toBeFD);
-                            while(toBeFD[0] == 'C' && toBeFD[1] == '3' || !(board.isFaceUp(letter.find(toBeFD[0])->second,number.find(toBeFD[1])->second))){
+                            while((!letter.count(input[0]) || !number.count(input[1])) || (toBeFD[0] == 'C' && toBeFD[1] == '3') || !(board.isFaceUp(letter.find(toBeFD[0])->second,number.find(toBeFD[1])->second))){
                                 cout<<"Invalid Input, Please choose one card"<<endl;
                                 getline(cin,toBeFD);
                             }
@@ -317,7 +319,7 @@ int main(){
                             c_ex = game.getCard(letter.find(n[0])->second,number.find(n[1])->second);
                         }
                         game.setCard(letter.find(n[0])->second,number.find(n[1])->second,c);
-                        cout<<"TOW CARDS ARE EQUAL?: "<<(c_ex == c)<<endl;
+                         
                         game.setCard(letter.find(input[0])->second,number.find(input[1])->second,c_ex);
                         
                         // now two cards are exchanged --> input[0],[1] is now chosen card (origanl is octopus)
@@ -402,8 +404,8 @@ int main(){
     }
     catch(const std::out_of_range& oor){
         std::cerr<<"out of range: "<<oor.what()<<endl;
+        exit(0);
     }
-
 
 
     return 0;
