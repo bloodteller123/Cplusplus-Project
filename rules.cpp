@@ -1,6 +1,8 @@
 /*
     //  Copyright © 2018 Zihan Chen. All rights reserved.
 */
+
+//#define RULES_DEBUG;
 #include "rules.h"
 #include "game.h"
 #include "player.h"
@@ -130,3 +132,36 @@ void Rules::walrus(){
 }
 
 
+#ifdef RULES_DEBUG
+#include <cassert>
+#include <iostream>
+#include <vector>
+using namespace std;
+    int main(){ // used to tset all public funcs
+         Board b;
+         Game g(b,"1");
+        vector<Player> v;
+        v.emplace_back("JOHN",0);
+        v.emplace_back("TOM",0);
+        v[0].setSide(Player::Side::top);
+        v[1].setSide(Player::Side::bottom); // set up for two players
+
+
+        Rules r(v);
+        assert(r.gameOver(g)== false); // gamestart ---> shouldbe false
+        cout<<"pass first assert"<<endl;
+
+        assert(r.roundOver(g)== false); //  two players are active, should return false
+        cout<<"pass second assert"<<endl;
+
+        while(g.getRound()!=7){
+            g.nextRound();
+        }
+        
+        assert(r.gameOver(g)== true); // rounds = 7
+        cout<<"pass final assert"<<endl;
+
+    }
+
+
+#endif
