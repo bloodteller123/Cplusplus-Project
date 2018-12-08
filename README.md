@@ -5,6 +5,7 @@ Card Game
 
 0.  remark: test.cpp can be used as guide to develop test cases for all classes
 -1.  function tests in Deck_c is done in CD.cpp
+NOTE THAT test cases for derived class are not important
 
 1. shuffle function should be CHECKED
 
