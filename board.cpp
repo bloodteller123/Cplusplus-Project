@@ -31,13 +31,9 @@ class NoMoreCards : public std::exception {
    }
 };
    
-   // cd.shuffles();
-
-    //RewardDeck &rd = RewardDeck::make_RewardDeck();
 
 Board::Board(){
-    
-    //while(v_card.size()!=24){
+
     if(cd.isEmpty()){
         throw NoMoreCards();
     }
@@ -51,11 +47,7 @@ Board::Board(){
     }
     
 
-    //while(!rd.isEmpty()){
-      //  v_reward.push_back(rd.getNext());
-    //}
-
-    size = v_card.size(); // 
+    size = v_card.size(); 
     _size = sqrt(size);
     rows = (*v_card[0]).getNRows();
     faceup[12] = true;
@@ -67,20 +59,12 @@ Board::Board(){
     buildLetter(letter);
     buildNumber(number);
     
-
-       
-    /*
-        TO BE COMPLETED--- throw exception
-    */
 }
 
-/*
-    TO BE COMPLETED --- throw exception
-*/
+
 
 bool Board::isFaceUp(const Letter& l, const Number& n) const{
-    // int q = letter + number
-    // v_card[q];
+
     if((!letter.count(l)||!number.count(n))){
         throw std::out_of_range("invalid position");
     }
