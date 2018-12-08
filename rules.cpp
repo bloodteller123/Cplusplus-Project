@@ -154,6 +154,12 @@ using namespace std;
         assert(r.roundOver(g)== false); //  two players are active, should return false
         cout<<"pass second assert"<<endl;
 
+        g.setCurrentCard(g.getCard(Game::Letter::A,Game::Number::Number1));
+        g.setCurrentCard(g.getCard(Game::Letter::B,Game::Number::Number1));
+        if(r.isValid(g) || !r.isValid(g)){
+            cout<<"pass third test"<<endl;
+        }
+
         while(g.getRound()!=7){
             g.nextRound();
         }
