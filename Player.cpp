@@ -7,6 +7,8 @@
 #include <string>
 #include <iostream>
 
+//#define PLAYER_DEBUG
+
 using std::ostream;
 using std::string;
 
