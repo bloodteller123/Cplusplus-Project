@@ -208,8 +208,7 @@ void Game::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,con
         Player p2 = g.getPlayer(Player::Side::top);//setting p2 to the player at position top
         assert(p2.getName()=="Nick"); //verifing that the new player has the same name as player at top
         std::cout<"pass final assert"<<std::endl;
-        
-        
+  
     }
 
 

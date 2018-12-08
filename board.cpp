@@ -500,19 +500,14 @@ void Board::buildNumber(std::map<Board::Number,string> &n){
 #include <iostream>
 
 /* The following public methods are tested
+
  
- bool isFaceUp(const Letter&, const Number&) const;
- bool turnFaceUp(const Letter&, const Number&);
- bool turnFaceDown(const Letter&, const Number&);
- Card* getCard(const Letter&, const Number&);
- void setCard(const Letter&, const Number&,Card*);
- void reset();
  
  */
  
 int main(){ // used to tset all public funcs
     
-    Board b();
+    Board b;
     
     const Letter aLetter = A;
     const Number aNumber = Number1;
@@ -530,6 +525,11 @@ int main(){ // used to tset all public funcs
     b.turnFaceDown(&aLetter, &aNumber);//turn card face down
     assert(b.isFaceUp(&aLetter, &aNumber) == false); //verifying the card is now face down
     std::cout << "pass third assert" << std::end1;
+    
+    b.setCard(B,Number2, b.getCard(A, Number1));//setting card B2 to the card @ A1
+    assert(b.getCard(A, Number1) == b.getCard(B, Number2));//verifying that the cards should be ==
+    std::cout<<"pass final assert"<<std::endl;
+    
     
 }
 
