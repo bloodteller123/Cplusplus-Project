@@ -1,6 +1,7 @@
 /*
     //  Copyright © 2018 Zihan Chen. All rights reserved.
 */
+//#define PLAYER_DEBUG
 #include "player.h"
 #include "reward.h"
 

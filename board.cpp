@@ -1,7 +1,7 @@
 /*
     //  Copyright © 2018 Zihan Chen. All rights reserved.
 */
-
+//#define BOARD_DEBUG 
 #include "board.h"
 #include "cardDeck.h"
 #include "rewardDeck.h"
