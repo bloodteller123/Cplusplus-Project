@@ -89,11 +89,11 @@ const Player& Rules::getNextPlayer(const Game& game){
     if(_count >= players.size()){
         _count = 0;
     }
-    cout<<"_count FOR Current player: "<<_count<<endl;
+   // cout<<"_count FOR Current player: "<<_count<<endl;
     const Player& player = game.getPlayer(players[_count].getSide());
 
      _count++;
-    cout<<"_count for Next player: "<<_count<<endl;
+   // cout<<"_count for Next player: "<<_count<<endl;
     return player;
     
 }
