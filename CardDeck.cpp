@@ -1,7 +1,7 @@
 /*
     //  Copyright © 2018 Zihan Chen. All rights reserved.
 */
-
+//#define CD_DEBUG
 #include "card.h"
 #include "cardDeck.h"
 #include "deck_C.h"
@@ -86,3 +86,25 @@ CardDeck::~CardDeck(){
          
      }
 }
+
+#ifdef CD_DEBUG
+#include <cassert>
+#include <iostream>
+#include <vector>
+using namespace std;
+    int main(){ // used to tset all public funcs
+
+        CardDeck &cd = CardDeck::make_CardDeck();
+        vector<Card*> cv;
+        while(!cd.isEmpty()){
+            cv.push_back(cd.getNext());
+        }
+        
+        //assert(cv.size()>=0); // there is card in vector
+        if(cv.size()>0){
+            cout<<"pass first test"<<endl;
+        }
+    }
+
+
+#endif
