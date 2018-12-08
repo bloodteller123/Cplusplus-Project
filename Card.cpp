@@ -59,3 +59,12 @@ int Card::getNRows(){
 }
 
 
+#ifdef  CARD_DEBUG // not working here because card(fa,fb) is private
+    int main(){
+        Card c(Card::FaceAnimal::CRAB,Card::FaceBackGround::Red);
+
+
+
+    }
+
+#endif
