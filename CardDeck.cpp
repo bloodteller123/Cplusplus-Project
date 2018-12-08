@@ -87,7 +87,7 @@ CardDeck::~CardDeck(){
      }
 }
 
-//#ifdef CD_DEBUG
+#ifdef CD_DEBUG
 #include <cassert>
 #include <iostream>
 #include <vector>
@@ -97,12 +97,12 @@ using namespace std;
         CardDeck &cd = CardDeck::make_CardDeck();
         Card *c;
         vector<Card*> cv;
-        if(cd.isEmpty()==false){
+        if(cd.isEmpty()==false){  // used to test isEmpty() in Deck_c
             cout<<"pass first test"<<endl;
         }
         while(!cd.isEmpty()){
             c = cd.getNext();
-            if(c!=nullptr){
+            if(c!=nullptr){      // used to test getNext() in Deck_c
                 cout<<"pass second test"<<endl;
             }
             else{
@@ -118,4 +118,4 @@ using namespace std;
     }
 
 
-//#endif
+#endif
