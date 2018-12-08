@@ -87,6 +87,7 @@ CardDeck::~CardDeck(){
      }
 }
 
+<<<<<<< HEAD
 
 
 
@@ -95,3 +96,5 @@ CardDeck::~CardDeck(){
 
 
 
+=======
+>>>>>>> 50e57ed08ccd6bcc971955e23f9156be902db753
