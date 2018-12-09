@@ -65,7 +65,7 @@ void DerivedBoard::updatePosition(const Letter& l1,const Number& n1,const Letter
         else if(position[i] == p_op && isFaceUp(l2,n2)){
             position[i] = p_ex;
         }
-        if(position[i] == p_ex){
+        if(position[i] == p_ex){  // for sure, it;s the last position
             position[i] = p_op;
             return;
         }

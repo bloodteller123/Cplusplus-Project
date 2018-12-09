@@ -11,11 +11,7 @@ using std::srand;
 using std::ostream;
 
 Reward::Reward(int r):ruby(r){
-    /*
-    srand((unsigned)time(0));
-    int range = (4-1)+1;
-    this->ruby = 1 + int(range*(rand()/(RAND_MAX + 1.0))); 
-    */
+
 }
 
 ostream& operator<<( ostream& os, const Reward& r){

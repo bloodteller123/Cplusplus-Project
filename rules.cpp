@@ -80,10 +80,7 @@ bool Rules::roundOver(const Game& game){
 }
 
 const Player& Rules::getNextPlayer(const Game& game){
-    //if(restart)
-       // _count = 0;
-// may be a for loop herer?
-
+ 
 //till find next active player
     
     if(_count >= players.size()){

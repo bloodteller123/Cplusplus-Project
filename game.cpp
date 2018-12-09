@@ -38,12 +38,7 @@ Game::Game(Board& b,string s):mode(s),board(b){
     if(mode == "4"){
         std::cout<<"BASE DISPLAY WITH BASE RULES MODE ON"<<std::endl;
     }
-    
-   // board.setMode(mode);
-    
-    /*
-        TO BE COMPLETED
-    */    
+ 
 }
 
 int Game::getRound() const{
@@ -76,13 +71,7 @@ Player& Game::getPlayer(Player::Side side) const{
 }
 
 const Card* Game::getPreviousCard() const{
-    /*
-    if(CardStorage.size()<2){
-        throw out_of_range("No Previous Card");
-    }
 
-    return CardStorage[0];
-    */
    if(previousCard==nullptr){
        std::cout<<"NO PREVIOUS"<<std::endl;
        throw out_of_range("No Previous Card");
@@ -93,23 +82,16 @@ const Card* Game::getPreviousCard() const{
 const Card* Game::getCurrentCard() const{
 
     return currentCard;
-    //return CardStorage[1];
+
 }
 
 Card* Game::getCard(const Letter& l, const Number& n){
-    // get CARD means player choose this card ?
-    //board.turnFaceUp(l,n);
 
     return board.getCard(l,n);
 }
 
 void Game::setCurrentCard(const Card* c){
-    /*
-    if(CardStorage.size()>2){
-        CardStorage.erase(CardStorage.begin());
-    }
-    CardStorage.push_back(c);
-    */
+
    if(c==nullptr){
        previousCard = c;
        currentCard = c;
@@ -145,25 +127,6 @@ ostream& operator<<(ostream& os, const Game& game){
     return os;
 
 }
-/*
-
-vector<string>& Game::getNeighbour(const Letter& l,const Number& n){
-    return board.getNeighbour(l,n);
-}
-
-void Game::setBlock(bool isBlocked,const Letter& l,const Number& n){
-    board.setBlock(isBlocked,l,n);
-}
-
-int Game::getNFUCard(){
-    return board.getNFUCard();
-}
-
-void Game::updatePosition(const Letter& l1,const Number& n1,const Letter& l2,const Number& n2){
-    board.updatePosition( l1,  n1,  l2,  n2);
-}
-*/
-
 
 
 //Game Driver

@@ -24,8 +24,6 @@ class Reward;
 RewardDeck RewardDeck::s_RewardDeck;
 
 RewardDeck::RewardDeck(){
-
-
 }
 
 void RewardDeck::shuffles(){

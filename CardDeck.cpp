@@ -22,21 +22,7 @@ using std::vector;
 class Card;
 
 CardDeck CardDeck::s_CardDeck;
-//CardDeck::CardDeck(){
 
-    /*
-    Card::FaceAnimal fa[5];
-    Card::FaceBackGround fb[5];
-    buildCard(fa, fb);
-
-    int i,j;
-    for(i=0;i<d_HEIGHT;++i){
-        for(j=0;j<d_WIDTH;++j){
-            this->card[i][j] = new Card(fa[i],fb[j]); // building 25 cards 
-        }
-    }
-*/
-//}
 void CardDeck::buildCard(Card::FaceAnimal (&fa)[5], Card::FaceBackGround (&fb)[5]){
     for(int i = Card::CRAB;i<=Card::WALRUS;++i){
         fa[i] = static_cast<Card::FaceAnimal>(i);

@@ -17,14 +17,7 @@ using std::string;
 
 void setAcive(bool status);
 Player::Player(string name,int r):_name(name),ruby(r){
-    /*
-    switch(s){
-        case top: position = "top";break;
-        case bottom: position = "bottom";break;
-        case left: position = "left";break;
-        case right: position = "right";break;
-    }
-    */
+
     setAcive(true);
     
 }
