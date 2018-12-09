@@ -156,6 +156,8 @@ using namespace std;
         if(r.isValid(g) || !r.isValid(g)){
             cout<<"pass third test"<<endl;
         }
+        const Player p = r.getNextPlayer(g); // this should return the first playe in the list because _count = 0 at this moment
+        assert(p.getSide()==Player::Side::top); 
 
         while(g.getRound()!=7){
             g.nextRound();
